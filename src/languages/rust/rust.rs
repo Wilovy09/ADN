@@ -13,7 +13,6 @@ pub fn add_rust(helix_lang_conf: &str) {
         println!("Instalación de `rustup component add rust-analyzer` completa");
 
         let config_to_add = r#"
-# rustup component add rust-analyzer
 [[language]]
 name = "rust"
 
@@ -29,11 +28,11 @@ language-server = { command = "rust-analyzer" }
 indent = { tab-width = 4, unit = "    " }
 "#;
         if let Err(err) = read(helix_lang_conf, config_to_add) {
-            eprintln!("Error al leer el archivo: {}", err);
+            eprintln!("Error al leer el archivo: {err}");
         }
     } else {
         let stderr = String::from_utf8_lossy(&output.stderr);
-        eprintln!("Error al ejecutar el comando:\n{}", stderr);
+        eprintln!("Error al ejecutar el comando:\n{stderr}");
     }
 }
 

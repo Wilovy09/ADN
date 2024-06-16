@@ -9,7 +9,7 @@ pub fn read(read_file: &str, content_lsp: &str) -> io::Result<String> {
     let content_lsp_to_func = content_lsp;
     match add_config_lsp(read_file, content_lsp_to_func) {
         Ok(_) => println!("Config added correctly."),
-        Err(e) => eprintln!("Error: {}", e),
+        Err(e) => eprintln!("Error: {e}"),
     }
     Ok(content)
 }
@@ -19,6 +19,6 @@ pub fn add_config_lsp(filename: &str, content: &str) -> io::Result<()> {
         .create(true)
         .append(true)
         .open(filename)?;
-    writeln!(file, "{}", content)?;
+    writeln!(file, "{content}")?;
     Ok(())
 }

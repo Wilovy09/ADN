@@ -1,8 +1,9 @@
-pub mod utilities;
 pub mod languages;
+pub mod utilities;
 use std::env;
 
 fn print_usage() {
+    println!("Check the documentatión https://github.com/Wilovy09/ADN");
     println!("Ussage [PATH_TO_HELIX_LANGUAGES_FILE] install [LANGUAGE]");
 }
 
@@ -24,6 +25,10 @@ fn main() {
     }
 
     if action == "install" && lsp == "rust" {
-        languages::rust::rust::add_rust(&helix_lang_conf);
+        if lsp == "rust" {
+            languages::rust::add_rust(helix_lang_conf);
+        } else if lsp == "typescript" {
+            languages::typescript::add_typescript(helix_lang_conf);
+        }
     }
 }
