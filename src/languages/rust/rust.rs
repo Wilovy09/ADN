@@ -1,7 +1,8 @@
-use std::process::Command;
 use crate::utilities::read;
+use std::path::PathBuf;
+use std::process::Command;
 
-pub fn add_rust(helix_lang_conf: &str) {
+pub fn add_rust(helix_lang_conf: &PathBuf) {
     let output = Command::new("rustup")
         .arg("component")
         .arg("add")
@@ -35,4 +36,3 @@ indent = { tab-width = 4, unit = "    " }
         eprintln!("Error al ejecutar el comando:\n{stderr}");
     }
 }
-

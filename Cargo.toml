@@ -14,3 +14,4 @@ include = ["**/**/*.rs", "Cargo.toml"]
 exclude = ["static/**/*"]
 
 [dependencies]
+clap = { version = "4.5.7", features = ["derive", "string"] }

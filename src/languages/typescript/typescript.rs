@@ -1,16 +1,19 @@
-use std::process::Command;
 use crate::utilities::read;
+use std::path::PathBuf;
+use std::process::Command;
 
-pub fn add_typescript(helix_lang_conf: &str) {
+pub fn add_typescript(helix_lang_conf: &PathBuf, npm_folder: &PathBuf) {
+    // crear una carpeta .npm-packages/
     let output = Command::new("npm")
         .arg("install")
         .arg("-g")
         .arg("typescript")
         .arg("typescript-language-server")
-        .output()
+        .env("NODE_PATH", npm_folder)
+        .spawn()
         .expect("\n-Falló al ejecutar `npm install -g typescript typescript-language-server`\n-Verifique que NPM este instalado");
-
-    if output.status.success() {
+    let output_err = output.wait_with_output().unwrap();
+    if output_err.status.success() {
         println!("Instalación de `npm install -g typescript typescript-language-server` completa");
 
         let config_to_add = r#"
@@ -23,8 +26,7 @@ language-server = [
             eprintln!("Error al leer el archivo: {err}");
         }
     } else {
-        let stderr = String::from_utf8_lossy(&output.stderr);
+        let stderr = String::from_utf8_lossy(&output_err.stdout);
         eprintln!("Error al ejecutar el comando:\n{stderr}");
     }
 }
-
