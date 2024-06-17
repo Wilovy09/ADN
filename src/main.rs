@@ -23,9 +23,9 @@ struct Argumentos {
 fn get_default_config_path() -> PathBuf {
     let mut path = PathBuf::new();
     #[cfg(target_os = "windows")]
-    path.push(env!("HOMEPATH"));
+    path.push(std::env::var("HOMEPATH").unwrap());
     #[cfg(not(target_os = "windows"))]
-    path.push(env!("HOME"));
+    path.push(std::env::var("HOME").unwrap());
     path.push(".config");
     path.push("helix");
     path.push("languages.toml");
@@ -35,9 +35,9 @@ fn get_default_config_path() -> PathBuf {
 fn get_default_npm_folder() -> PathBuf {
     let mut path = PathBuf::new();
     #[cfg(target_os = "windows")]
-    path.push(env!("HOMEPATH"));
+    path.push(std::env::var("HOMEPATH").unwrap());
     #[cfg(not(target_os = "windows"))]
-    path.push(env!("HOME"));
+    path.push(std::env::var("HOME").unwrap());
     path.push(".nvm");
     path.push("versions");
     path.push("node");
