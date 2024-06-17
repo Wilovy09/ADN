@@ -17,7 +17,10 @@ struct Argumentos {
 
 fn get_default_config_path() -> PathBuf {
     let mut path = PathBuf::new();
-    path.push(env!("HOME"));
+    #[cfg(target_os = "windows")]
+    path.push(std::env::var("HOMEPATH").unwrap());
+    #[cfg(not(target_os = "windows"))]
+    path.push(std::env::var("HOME").unwrap());
     path.push(".config");
     path.push("helix");
     path.push("languages.toml");
@@ -26,7 +29,10 @@ fn get_default_config_path() -> PathBuf {
 
 fn get_default_npm_folder() -> PathBuf {
     let mut path = PathBuf::new();
-    path.push(env!("HOME"));
+    #[cfg(target_os = "windows")]
+    path.push(std::env::var("HOMEPATH").unwrap());
+    #[cfg(not(target_os = "windows"))]
+    path.push(std::env::var("HOME").unwrap());
     path.push(".nvm");
     path.push("versions");
     path.push("node");
@@ -63,6 +69,7 @@ enum Language {
         #[arg(default_value=get_default_npm_folder().into_os_string())]
         npm_folder: PathBuf,
     },
+    Go,
 }
 
 fn main() {
@@ -74,6 +81,7 @@ fn main() {
             Language::Typescript { npm_folder } => {
                 languages::typescript::add_typescript(&args.config, &npm_folder)
             }
+            Language::Go => languages::go::add_go(&args.config),
         },
         Comandos::Remove { .. } => {
             println!("Desinstalando")
