@@ -3,6 +3,10 @@
 <img src="./static/images/readme.png">
 </a>
 <h1>Facilitate the installation of LSPs in <a href="https://helix-editor.com/" target="_blank">Helix editor</a>.</h1>
+
+<a target="_blank" href="https://crates.io/crates/adn">
+<img alt="crates.io" src="https://img.shields.io/crates/v/adn.svg?style=for-the-badge&color=28153f&logo=rust" height="20">
+</a>
 </div>
 
 > [!WARNING]
@@ -22,14 +26,13 @@ cargo install adn
 ## How to use
 
 ```sh
-adn PATH ACTION LANGUAGE
+adn ACTION LANGUAGE
 ```
 
-| Arg      | Description                                                                           |
-|----------|---------------------------------------------------------------------------------------|
-| PATH     | We will replace this part with the location of our `languages.toml` file.             |
-| ACTION   | In this part we will put the action that we want to do `install` or (`uninstall` WIP) |
-| LANGUAGE | Here we will put the name of the language we want the LSP to be installed in.         |
+| Arg      | Description                                                                                  |
+|----------|----------------------------------------------------------------------------------------------|
+| ACTION   | In this part we will put the action that we want to do `i` to install or (`r` to remove WIP) |
+| LANGUAGE | Here we will put the name of the language we want the LSP to be installed in.                |
 
 > [!NOTE]
 > If the `path` does not end in `langugages.toml` it will throw an error.
@@ -39,8 +42,15 @@ adn PATH ACTION LANGUAGE
 You can run the command from helix using `:run-command-shell` or if you prefer in your trusted terminal.
 
 ```sh
-adn ~/.config/helix/langauges.toml install rust
+adn i rust
 ```
+
+### Config
+
+| Flag                | Descriptión                       |
+|---------------------|-----------------------------------|
+| `-c` `--config`     | To set the `langauges.toml` path. |
+| `-n` `--npm-folder` | To ser the `node_modules/` path.  |
 
 ## Features
 

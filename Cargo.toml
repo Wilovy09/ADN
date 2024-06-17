@@ -1,6 +1,17 @@
 [package]
-name = "ADN"
+name = "adn"
 version = "0.1.0"
 edition = "2021"
+description = "🧬 The easy way to install LSP in Helix"
+categories = ["development-tools", "lsp", "helix"]
+keywords = ["helix", "lsp", "development-tools", "develop", "tools"]
+authors = ["Wilovy09"]
+license = "MIT"
+repository = "https://github.com/Wilovy09/ADN"
+homepage = "https://github.com/Wilovy09/ADN"
+readme = "README.md"
+include = ["**/**/*.rs", "Cargo.toml"]
+exclude = ["static/**/*"]
 
 [dependencies]
+clap = { version = "4.5.7", features = ["derive", "string"] }
