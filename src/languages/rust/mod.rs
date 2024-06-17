@@ -1,4 +1,4 @@
-use crate::utilities::read;
+use crate::utilities::add_lsp_config;
 use std::path::PathBuf;
 use std::process::Command;
 
@@ -17,7 +17,7 @@ pub fn add_rust(helix_lang_conf: &PathBuf) {
 [language-server.rust-analyzer.config.check]
 command = "clippy"
 "#;
-        if let Err(err) = read(helix_lang_conf, config_to_add) {
+        if let Err(err) = add_lsp_config(helix_lang_conf, config_to_add) {
             eprintln!("Error al leer el archivo: {err}");
         }
     } else {

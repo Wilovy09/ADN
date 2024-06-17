@@ -1,4 +1,4 @@
-use crate::utilities::read;
+use crate::utilities::add_lsp_config;
 use std::path::PathBuf;
 use std::process::Command;
 
