@@ -39,7 +39,7 @@ adn PATH ACTION LANGUAGE
 You can run the command from helix using `:run-command-shell` or if you prefer in your trusted terminal.
 
 ```sh
-adn ~/.config/helix/langauges.toml install rust
+adn ~/.config/helix/languges.toml install rust
 ```
 
 ## Features

@@ -3,7 +3,6 @@ use std::path::PathBuf;
 use std::process::Command;
 
 pub fn add_typescript(helix_lang_conf: &PathBuf, npm_folder: &PathBuf) {
-    // crear una carpeta .npm-packages/
     let output = Command::new("npm")
         .arg("install")
         .arg("-g")
