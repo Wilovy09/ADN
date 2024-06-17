@@ -1,6 +1,6 @@
 [package]
 name = "adn"
-version = "0.1.0"
+version = "0.1.2"
 edition = "2021"
 description = "🧬 The easy way to install LSP in Helix"
 categories = ["development-tools", "lsp", "helix"]
