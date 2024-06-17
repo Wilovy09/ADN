@@ -4,7 +4,7 @@
 </a>
 <h1>Facilitate the installation of LSPs in <a href="https://helix-editor.com/" target="_blank">Helix editor</a>.</h1>
 
-<a target="_blank" href="">
+<a target="_blank" href="https://crates.io/crates/adn">
 <img alt="crates.io" src="https://img.shields.io/crates/v/adn.svg?style=for-the-badge&color=28153f&logo=rust" height="20">
 </a>
 </div>
