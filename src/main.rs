@@ -71,6 +71,8 @@ fn main() {
                     if let Some(path_npm) = args.npm_folder.as_ref() {
                         languages::typescript::add_typescript(path_hx, path_npm)
                     }
+                } else if name == "go" {
+                    languages::go::add_go(path_hx)
                 }
             }
         }
