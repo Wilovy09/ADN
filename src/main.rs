@@ -9,12 +9,7 @@ struct Argumentos {
     /// This is for 'languages.toml'
     #[clap(long, short)]
     #[arg(default_value=get_default_config_path().into_os_string())]
-    config: Option<PathBuf>,
-
-    /// This is for 'node_modules/'
-    #[clap(long, short)]
-    #[arg(default_value=get_default_npm_folder().into_os_string())]
-    npm_folder: Option<PathBuf>,
+    config: PathBuf,
 
     #[clap(subcommand)]
     cmd: Comandos,
@@ -47,15 +42,26 @@ enum Comandos {
     /// Install LSP (Alias 'i')
     #[clap(alias = "i")]
     Install {
-        #[clap()]
-        name: String,
+        #[clap(subcommand)]
+        language: Language,
     },
 
     /// Remove a LSP (Alias 'r')
     #[clap(alias = "r")]
     Remove {
-        #[clap()]
-        name: String,
+        #[clap(subcommand)]
+        language: Language,
+    },
+}
+
+#[derive(Subcommand)]
+enum Language {
+    Rust,
+    Typescript {
+        /// This is for 'node_modules/'
+        #[clap(long, short)]
+        #[arg(default_value=get_default_npm_folder().into_os_string())]
+        npm_folder: PathBuf,
     },
 }
 
@@ -63,19 +69,14 @@ fn main() {
     let args = Argumentos::parse();
 
     match args.cmd {
-        Comandos::Install { name } => {
-            if let Some(path_hx) = args.config.as_ref() {
-                if name == "rust" {
-                    languages::rust::add_rust(path_hx)
-                } else if name == "typescript" {
-                    if let Some(path_npm) = args.npm_folder.as_ref() {
-                        languages::typescript::add_typescript(path_hx, path_npm)
-                    }
-                }
+        Comandos::Install { language } => match language {
+            Language::Rust => languages::rust::add_rust(&args.config),
+            Language::Typescript { npm_folder } => {
+                languages::typescript::add_typescript(&args.config, &npm_folder)
             }
-        }
-        Comandos::Remove { name } => {
-            println!("Desinstalando: {name}")
+        },
+        Comandos::Remove { .. } => {
+            println!("Desinstalando")
         }
     }
 }
