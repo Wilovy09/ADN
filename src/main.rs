@@ -79,9 +79,9 @@ fn main() {
         Comandos::Install { language } => match language {
             Language::Rust => languages::rust::add_rust(&args.config),
             Language::Typescript { npm_folder } => {
-                languages::typescript::add_typescript(&args.config, &npm_folder)
+                languages::typescript::add_typescript(&npm_folder)
             }
-            Language::Go => languages::go::add_go(&args.config),
+            Language::Go => languages::go::add_go(),
         },
         Comandos::Remove { .. } => {
             println!("Desinstalando")
