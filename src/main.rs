@@ -75,10 +75,10 @@ fn main() {
                     languages::rust::add_rust(path_hx)
                 } else if name == "typescript" {
                     if let Some(path_npm) = args.npm_folder.as_ref() {
-                        languages::typescript::add_typescript(path_hx, path_npm)
+                        languages::typescript::add_typescript(path_npm)
                     }
                 } else if name == "go" {
-                    languages::go::add_go(path_hx)
+                    languages::go::add_go()
                 }
             }
         }

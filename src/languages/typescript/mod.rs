@@ -1,8 +1,7 @@
-use crate::utilities::add_lsp_config;
 use std::path::PathBuf;
 use std::process::Command;
 
-pub fn add_typescript(helix_lang_conf: &PathBuf, npm_folder: &PathBuf) {
+pub fn add_typescript(npm_folder: &PathBuf) {
     let output = Command::new("npm")
         .arg("install")
         .arg("-g")

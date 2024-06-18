@@ -1,8 +1,8 @@
 use crate::utilities::add_lsp_config;
-use std::path::PathBuf;
+use std::path::Path;
 use std::process::Command;
 
-pub fn add_rust(helix_lang_conf: &PathBuf) {
+pub fn add_rust(helix_lang_conf: &Path) {
     let output = Command::new("rustup")
         .arg("component")
         .arg("add")

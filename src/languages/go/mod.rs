@@ -1,8 +1,6 @@
-use crate::utilities::add_lsp_config;
-use std::path::PathBuf;
 use std::process::Command;
 
-pub fn add_go(helix_lang_conf: &PathBuf) {
+pub fn add_go() {
     let output = Command::new("go")
         .arg("install")
         .arg("golang.org/x/tools/gopls@latest")
