@@ -11,6 +11,11 @@ struct Argumentos {
     #[arg(default_value=get_default_config_path().into_os_string())]
     config: PathBuf,
 
+    /// This is for 'node_modules/'
+    #[clap(long, short)]
+    #[arg(default_value=get_default_npm_folder().into_os_string())]
+    npm_folder: PathBuf,
+
     #[clap(subcommand)]
     cmd: Comandos,
 }
@@ -63,28 +68,38 @@ enum Comandos {
 #[derive(Subcommand)]
 enum Language {
     Rust,
-    Typescript {
-        /// This is for 'node_modules/'
-        #[clap(long, short)]
-        #[arg(default_value=get_default_npm_folder().into_os_string())]
-        npm_folder: PathBuf,
-    },
+    Typescript,
     Go,
+    Python,
+    Html,
+    Css,
+    Javascript,
+    Jsx,
+    Tsx,
+    Json,
 }
 
 fn main() {
     let args = Argumentos::parse();
-
     match args.cmd {
         Comandos::Install { language } => match language {
             Language::Rust => languages::rust::add_rust(&args.config),
-            Language::Typescript { npm_folder } => {
-                languages::typescript::add_typescript(&npm_folder)
+            Language::Typescript => {
+                languages::typescript::add_typescript(&args.config, &args.npm_folder)
             }
-            Language::Go => languages::go::add_go(),
+            Language::Go => languages::go::add_go(&args.config),
+            Language::Python => languages::python::add_python(&args.config),
+            Language::Html => languages::html::add_html(&args.config, &args.npm_folder),
+            Language::Css => languages::css::add_css(&args.config, &args.npm_folder),
+            Language::Javascript => {
+                languages::javascript::add_javascript(&args.config, &args.npm_folder)
+            }
+            Language::Jsx => languages::jsx::add_jsx(&args.config, &args.npm_folder),
+            Language::Tsx => languages::tsx::add_tsx(&args.config, &args.npm_folder),
+            Language::Json => languages::json::add_json(&args.config, &args.npm_folder),
         },
         Comandos::Remove { .. } => {
-            println!("Desinstalando")
+            println!("Desinstalando... (WIP)")
         }
     }
 }
