@@ -49,8 +49,22 @@ adn i rust
 
 | Flag                | Descriptión                       |
 |---------------------|-----------------------------------|
-| `-c` `--config`     | To set the `langauges.toml` path. |
+| `-c` `--config`     | To set the `languages.toml` path. |
 | `-n` `--npm-folder` | To ser the `node_modules/` path.  |
+
+## Languages
+
+* [x] Rust
+* [x] Go
+* [x] HTML
+* [x] CSS
+* [x] Javascript
+* [x] Typescript
+* [x] JSX
+* [x] TSX
+* [x] JSON
+
+
 
 ## Features
 
