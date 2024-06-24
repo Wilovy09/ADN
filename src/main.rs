@@ -23,7 +23,7 @@ struct Argumentos {
 #[cfg(target_os = "windows")]
 fn get_default_config_path() -> PathBuf {
     let mut path = PathBuf::new();
-    path.push(std::env::var("APPDATA").uwrap());
+    path.push(std::env::var("APPDATA").unwrap());
     path.push("helix");
     path.push("languages.toml");
     path
