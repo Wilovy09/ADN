@@ -7,13 +7,11 @@ use std::path::PathBuf;
 #[derive(Parser)]
 struct Argumentos {
     /// This is for 'languages.toml'
-    #[clap(long, short)]
-    #[arg(default_value=get_default_config_path().into_os_string())]
+    #[arg(long, short, default_value_os_t = get_default_config_path())]
     config: PathBuf,
 
     /// This is for 'node_modules/'
-    #[clap(long, short)]
-    #[arg(default_value=get_default_npm_folder().into_os_string())]
+    #[arg(long, short, default_value_os_t = get_default_npm_folder())]
     npm_folder: PathBuf,
 
     #[clap(subcommand)]
