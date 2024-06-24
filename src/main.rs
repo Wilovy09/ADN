@@ -20,11 +20,17 @@ struct Argumentos {
     cmd: Comandos,
 }
 
+#[cfg(target_os = "windows")]
 fn get_default_config_path() -> PathBuf {
     let mut path = PathBuf::new();
-    #[cfg(target_os = "windows")]
-    path.push(std::env::var("HOMEPATH").unwrap());
-    #[cfg(not(target_os = "windows"))]
+    path.push(std::env::var("APPDATA").uwrap());
+    path.push("helix");
+    path.push("languages.toml");
+    path
+}
+#[cfg(not(target_os = "windows"))]
+fn get_default_config_path() -> PathBuf {
+    let mut path = PathBuf::new();
     path.push(std::env::var("HOME").unwrap());
     path.push(".config");
     path.push("helix");
@@ -32,16 +38,22 @@ fn get_default_config_path() -> PathBuf {
     path
 }
 
+#[cfg(target_os = "windows")]
 fn get_default_npm_folder() -> PathBuf {
     let mut path = PathBuf::new();
-    #[cfg(target_os = "windows")]
-    path.push(std::env::var("HOMEPATH").unwrap());
-    #[cfg(not(target_os = "windows"))]
+    path.push(std::env::var("PROGRAMFILES").unwrap());
+    path.push("nodejs");
+    path.push("node_modules");
+    path
+}
+#[cfg(not(target_os = "windows"))]
+fn get_default_npm_folder() -> PathBuf {
+    let mut path = PathBuf::new();
     path.push(std::env::var("HOME").unwrap());
     path.push(".nvm");
     path.push("versions");
     path.push("node");
-    path.push("v20.14.0");
+    path.push("v20.15.0");
     path.push("lib");
     path.push("node_modules");
     path
@@ -57,7 +69,7 @@ enum Comandos {
         language: Language,
     },
 
-    /// Remove a LSP (Alias 'r')
+    /// WIP Remove a LSP (Alias 'r')
     #[clap(alias = "r")]
     Remove {
         #[clap(subcommand)]

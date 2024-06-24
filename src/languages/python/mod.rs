@@ -31,7 +31,8 @@ plugins.pyls_mypy.live_mode = true"#;
         }
     } else {
         let stderr = String::from_utf8_lossy(&output.stderr);
-        eprintln!("Error al ejecutar el comando: pip install 'python-lsp-server[all]':\nEste error a veces puede ser ocasionado porque el OS no permite la instalación de paquetes de forma global.\nIntente ejecutando con: sudo pip install 'python-lsp-server[all]' --break-system-packages\nY agregando manualmente esto a su langauges.toml\n[[language]]\nname = 'python'\nlanguage-servers = ['pylsp']
-\n\nError:\n{stderr}")
+        eprintln!(
+            "Error al ejecutar el comando: pip install 'python-lsp-server[all]'\nError:\n{stderr}"
+        )
     }
 }
