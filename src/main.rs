@@ -94,19 +94,15 @@ fn main() {
     match args.cmd {
         Comandos::Install { language } => match language {
             Language::Rust => languages::rust::add_rust(&args.config),
-            Language::Typescript => {
-                languages::typescript::add_typescript(&args.config, &args.npm_folder)
-            }
-            Language::Go => languages::go::add_go(&args.config),
+            Language::Typescript => languages::typescript::add_typescript(&args.npm_folder),
+            Language::Go => languages::go::add_go(),
             Language::Python => languages::python::add_python(&args.config),
             Language::Html => languages::html::add_html(&args.config, &args.npm_folder),
-            Language::Css => languages::css::add_css(&args.config, &args.npm_folder),
-            Language::Javascript => {
-                languages::javascript::add_javascript(&args.config, &args.npm_folder)
-            }
+            Language::Css => languages::css::add_css(&args.npm_folder),
+            Language::Javascript => languages::javascript::add_javascript(&args.npm_folder),
             Language::Jsx => languages::jsx::add_jsx(&args.config, &args.npm_folder),
             Language::Tsx => languages::tsx::add_tsx(&args.config, &args.npm_folder),
-            Language::Json => languages::json::add_json(&args.config, &args.npm_folder),
+            Language::Json => languages::json::add_json(&args.npm_folder),
         },
         Comandos::Remove { .. } => {
             println!("Desinstalando... (WIP)")

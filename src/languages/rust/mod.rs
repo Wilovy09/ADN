@@ -18,15 +18,7 @@ pub fn add_rust(helix_lang_conf: &PathBuf) {
 name = "rust"
 
 [language-server.rust-analyzer.config.check]
-command = "clippy"
-scope = "source.rust"
-injection-regex = "rust"
-file-types = ["rs"]
-roots = ["Cargo.toml", "Cargo.lock"]
-auto-format = true
-comment-token = "//"
-language-server = { command = "rust-analyzer" }
-indent = { tab-width = 4, unit = "    " }"#;
+command = "clippy""#;
         if let Err(err) = read(helix_lang_conf, config_to_add) {
             eprintln!("Error al leer el archivo: {err}");
         }
