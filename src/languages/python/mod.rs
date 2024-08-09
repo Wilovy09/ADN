@@ -20,9 +20,6 @@ pub fn add_python(helix_lang_conf: &PathBuf) {
  exitosa."
         );
         let config_to_add = r#"
-[language.python]
-language-servers = ['pylsp']    
-
 [language-server.pylsp.config.pylsp]
 plugins.pyls_mypy.enabled = true
 plugins.pyls_mypy.live_mode = true"#;
